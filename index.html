@@ -58,6 +58,25 @@ function recognizeFile(file){
 			progressUpdate({ status: 'done', data: data })
 		})
 }
+
+function recognizeCanvas(can){
+	console.log("canvas")
+	document.querySelector("#log").innerHTML = ''
+	
+
+	Tesseract.recognize(can, {
+		lang: document.querySelector('#langsel').value
+	})
+		.progress(function(packet){
+			console.info(packet)
+			progressUpdate(packet)
+
+		})
+		.then(function(data){
+			console.log(data)
+			progressUpdate({ status: 'done', data: data })
+		})
+}
 </script>
 <select id="langsel" onchange="window.lastFile && recognizeFile(window.lastFile)">
 <option value='afr'     > Afrikaans             </option>
@@ -139,7 +158,7 @@ function recognizeFile(file){
 <button>Take snapshot</button>
 <canvas></canvas>
 
-<script src=JS/device-selector.js></script>
+<script src="JS/device-selector.js"></script>
 <script src="JS/camera.js"></script>
 
 <style>

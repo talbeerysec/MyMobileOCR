@@ -20,6 +20,7 @@ button.onclick = function() {
   canvas.height = video.videoHeight;
   canvas.getContext('2d').
     drawImage(video, 0, 0, canvas.width, canvas.height);
+	recognizeCanvas(canvas)
 };
 
 var constraints = {
